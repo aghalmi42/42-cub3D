@@ -1,2 +1,2 @@
-# Cub3D
-cub3D for description
+# cube3d
+Cube 3d for 42
