@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_track_utils_bonus.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:56:11 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:56:11 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes_bonus/cub3D_bonus.h"
 
-char *copy_line(char *line, int width)
+char	*copy_line(char *line, int width)
 {
 	char	*new_line;
 	int		i;
@@ -24,53 +35,53 @@ char *copy_line(char *line, int width)
 	return (new_line);
 }
 
-void free_part_grid(char **grid, int line)
+void	free_part_grid(char **grid, int line)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < line)
-    {
-        free(grid[i]);
-        i++;
-    }
-    free(grid);
+	i = 0;
+	while (i < line)
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
 }
 
-char **copy_grid(t_map *map)
+char	**copy_grid(t_map *map)
 {
-    char **copy;
-    int i;
+	char	**copy;
+	int		i;
 
-    i = 0;
-    copy = malloc(sizeof(char *) * (map->height + 1));
-    if (!copy)
-        return (NULL);
-    while(i < map->height)
-    {
-        copy[i] = copy_line(map->grid[i], map->width);
-        if (!copy[i])
-        {
-            free_part_grid(copy, i);
-            return (NULL);
-        }
-        i++;
-    }
-    copy[i] = NULL;
-    return (copy);
+	i = 0;
+	copy = malloc(sizeof(char *) * (map->height + 1));
+	if (!copy)
+		return (NULL);
+	while (i < map->height)
+	{
+		copy[i] = copy_line(map->grid[i], map->width);
+		if (!copy[i])
+		{
+			free_part_grid(copy, i);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
 }
 
-void free_grid(char **grid)
+void	free_grid(char **grid)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!grid)
-        return ;
-    while(grid[i])
-    {
-        free(grid[i]);
-        i++;
-    }
-    free(grid);
+	i = 0;
+	if (!grid)
+		return ;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
 }

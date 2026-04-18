@@ -1,42 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:54:26 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:54:27 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes_bonus/cub3D_bonus.h"
-
-static void	mock_init_textures(t_game *game)
-{
-	game->walls[0].img_ptr = mlx_xpm_file_to_image(game->libx.mlx, "textures/Dungeon_brick_wall_grey_north.xpm", &game->walls[0].width, &game->walls[0].height);
-		if (!game->walls[0].img_ptr)
-		{
-			printf("Erreur : Impossible de charger la texture %d\n", 0);
-			exit(1);
-		}
-	game->walls[1].img_ptr = mlx_xpm_file_to_image(game->libx.mlx, "textures/Dungeon_brick_wall_blue_south.xpm", &game->walls[1].width, &game->walls[1].height);
-		if (!game->walls[1].img_ptr)
-		{
-			printf("Erreur : Impossible de charger la texture %d\n", 1);
-			exit(1);
-		}
-	game->walls[2].img_ptr = mlx_xpm_file_to_image(game->libx.mlx, "textures/Dungeon_brick_wall_yellow_west.xpm", &game->walls[2].width, &game->walls[2].height);
-		if (!game->walls[2].img_ptr)
-		{
-			printf("Erreur : Impossible de charger la texture %d\n", 2);
-			exit(1);
-		}
-	game->walls[3].img_ptr = mlx_xpm_file_to_image(game->libx.mlx, "textures/Dungeon_brick_wall_purple_east.xpm", &game->walls[3].width, &game->walls[3].height);
-	if (!game->walls[3].img_ptr)
-		{
-			printf("Erreur : Impossible de charger la texture %d\n", 3);
-			exit(1);
-		}
-	int i;
-
-	i = 0;
-	while (i < 4)
-	{
-		game->walls[i].buffer = (int *)mlx_get_data_addr(game->walls[i].img_ptr, 
-			&game->walls[i].bpp, &game->walls[i].size_line, &game->walls[i].endian);
-		game->walls[i].size_line /= 4;
-		i++;
-	}
-}
 
 int	init_milx(t_milx *var, t_game *game)
 {
@@ -85,8 +59,7 @@ int	init_everything(t_game *game)
 {
 	if (!init_milx(&game->libx, game))
 		return (1);
-	//init_textures(game);
-	mock_init_textures(game);
+	init_textures(game);
 	if (!init_all_doors(game))
 		return (1);
 	init_move_keys(game);

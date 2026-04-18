@@ -1,13 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/04/15 13:58:05 by aghalmi           #+#    #+#              #
+#    Updated: 2026/04/15 13:58:05 by aghalmi          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = cub3D
 
 BONUS = cub3D_bonus
 
 SRCS =	srcs/main.c \
+		srcs/parsing/parsing.c \
 		srcs/parsing/parsing_map.c \
 		srcs/parsing/parsing_map_utils.c \
 		srcs/parsing/parsing_map_utils_2.c \
-		srcs/parsing/parsing_map_utils_3.c \
 		srcs/parsing/parsing_map_utils_4.c \
 		srcs/parsing/parsing_map_utils_5.c \
 		srcs/parsing/valid_map.c \
@@ -16,30 +27,31 @@ SRCS =	srcs/main.c \
 		srcs/parsing/free_all.c \
 		srcs/parsing/check.c \
 		srcs/parsing/check_2.c \
-		srcs/parsing/parsing_door.c \
+		srcs/parsing/parsing_line_colors.c \
+		srcs/parsing/parsing_line_textures.c \
+		srcs/parsing/check_line_colors.c \
+		srcs/parsing/init_game.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		srcs/exec/hooks.c \
 		srcs/exec/init.c \
-		srcs/exec/move_player.c \
 		srcs/exec/update_move_camera.c \
 		srcs/exec/display_shape.c \
 		srcs/exec/raycasting.c \
-		srcs/exec/minimap.c \
 		srcs/exec/2D_to_3D.c \
 		srcs/exec/display_line.c \
 		srcs/exec/display_line_set.c \
 		srcs/exec/display_ray.c \
 		srcs/exec/init_textures.c \
 		srcs/exec/loop_update_ray.c \
-		srcs/exec/update_game.c
+		srcs/exec/update_game.c \
+		srcs/exec/free.c
 		
 
 SRCS_BONUS =	srcs_bonus/main_bonus.c \
 				srcs_bonus/parsing/parsing_map_bonus.c \
 				srcs_bonus/parsing/parsing_map_utils_bonus.c \
 				srcs_bonus/parsing/parsing_map_utils_2_bonus.c \
-				srcs_bonus/parsing/parsing_map_utils_3_bonus.c \
 				srcs_bonus/parsing/parsing_map_utils_4_bonus.c \
 				srcs_bonus/parsing/parsing_map_utils_5_bonus.c \
 				srcs_bonus/parsing/valid_map_bonus.c \
@@ -49,6 +61,11 @@ SRCS_BONUS =	srcs_bonus/main_bonus.c \
 				srcs_bonus/parsing/check_bonus.c \
 				srcs_bonus/parsing/check_2_bonus.c \
 				srcs_bonus/parsing/parsing_door_bonus.c \
+				srcs_bonus/parsing/parsing_line_colors_bonus.c \
+				srcs_bonus/parsing/parsing_line_textures_bonus.c \
+				srcs_bonus/parsing/check_line_colors_bonus.c \
+				srcs_bonus/parsing/init_game_bonus.c \
+				srcs_bonus/parsing/parsing_bonus.c \
 				srcs_bonus/exec/hooks_bonus.c \
 				srcs_bonus/exec/init_bonus.c \
 				srcs_bonus/exec/init_textures_bonus.c \
@@ -63,6 +80,7 @@ SRCS_BONUS =	srcs_bonus/main_bonus.c \
 				srcs_bonus/exec/loop_update_ray_bonus.c \
 				srcs_bonus/exec/minimap_bonus.c \
 				srcs_bonus/exec/2D_to_3D_bonus.c \
+				srcs_bonus/exec/free_bonus.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				srcs_bonus/exec/init_doors_bonus.c
@@ -144,6 +162,7 @@ clean:
 fclean: clean
 	@echo "$(RED)Full clean...$(RESET)"
 	@rm -f $(NAME)
+	@rm -f $(BONUS)
 	@make -C $(LIBFT_DIR) fclean > /dev/null 2>&1
 
 re: fclean all

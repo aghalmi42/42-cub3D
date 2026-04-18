@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_all_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:55:15 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:55:15 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes_bonus/cub3D_bonus.h"
 
@@ -23,5 +34,4 @@ void	free_game(t_game *game)
 {
 	free_texture(&game->texture);
 	free_grid(game->map.grid);
-	free_door(&game->map);
 }

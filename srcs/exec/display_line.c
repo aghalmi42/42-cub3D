@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_line.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:51:22 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:51:23 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	display_vertical_line_with_textures(t_game *game, int x,
 		t_ray *ray, t_line_vert line)
 {
-	int	y;
-
-	y = 0;
 	set_wall_img(game, ray, &line);
 	set_hit_point(game, ray, &line);
 	set_text_x(ray, line.hit_point, line.wall);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:54:22 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 14:34:53 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes_bonus/cub3D_bonus.h"
 
 int	keys_move_press(int keycode, t_game *game)
@@ -8,17 +20,16 @@ int	keys_move_press(int keycode, t_game *game)
 		game->move_keys.left = 1;
 	if (keycode == KEY_RIGHT)
 		game->move_keys.right = 1;
-	if (keycode == KEY_Z)
+	if (keycode == KEY_W)
 		game->move_keys.w = 1;
 	if (keycode == KEY_S)
 		game->move_keys.s = 1;
-	if (keycode == KEY_Q)
+	if (keycode == KEY_A)
 		game->move_keys.a = 1;
 	if (keycode == KEY_D)
 		game->move_keys.d = 1;
 	if (keycode == KEY_ESC)
 	{
-		free_grid(game->map.grid);
 		free_mlx_and_destroy(game);
 		exit(0);
 	}
@@ -42,11 +53,11 @@ int	keys_move_release(int keycode, t_game *game)
 		game->move_keys.left = 0;
 	if (keycode == KEY_RIGHT)
 		game->move_keys.right = 0;
-	if (keycode == KEY_Z)
+	if (keycode == KEY_W)
 		game->move_keys.w = 0;
 	if (keycode == KEY_S)
 		game->move_keys.s = 0;
-	if (keycode == KEY_Q)
+	if (keycode == KEY_A)
 		game->move_keys.a = 0;
 	if (keycode == KEY_D)
 		game->move_keys.d = 0;

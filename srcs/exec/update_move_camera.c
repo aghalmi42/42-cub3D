@@ -1,52 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update_move_camera.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:52:25 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:52:26 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
 void	update_move_player(t_game *game)
 {
-	double move = 0.01;
+	double	move;
 	double	new_x;
 	double	new_y;
 
+	move = 0.015;
 	new_x = game->player.x;
 	new_y = game->player.y;
-	if (game->move_keys.w)
-	{
-		new_x += game->player.dir_x * move;
-		new_y += game->player.dir_y * move;
-	}
-	if (game->move_keys.s)
-	{
-		new_x -= game->player.dir_x * move;
-		new_y -= game->player.dir_y * move;
-	}
-	if (game->move_keys.a)
-	{
-		new_x -= game->player.plane_x * move;
-		new_y -= game->player.plane_y * move;
-	}
-	if (game->move_keys.d)
-	{
-		new_x += game->player.plane_x * move;
-		new_y += game->player.plane_y * move;
-	}
+	update_new_coords(&new_x, &new_y, game, move);
 	if (can_move(game, new_x, game->player.y))
 		game->player.x = new_x;
 	if (can_move(game, game->player.x, new_y))
 		game->player.y = new_y;
-	// if(game->move_keys.s && can_move(game, game->player.x, game->player.y - move))
-	// 	game->player.y -= move;
-	// if(game->move_keys.d && can_move(game, game->player.x, game->player.y + move))
-	// 	game->player.y += move;
-	// if(game->move_keys.a && can_move(game, game->player.x - move, game->player.y))
-	// 	game->player.x -= move;
-	// if(game->move_keys.w && can_move(game, game->player.x + move, game->player.y))
-	// 	game->player.x += move;
+}
+
+void	update_new_coords(double *new_x, double *new_y,
+		t_game *game, double move)
+{
+	if (game->move_keys.w)
+	{
+		*new_x = *new_x + game->player.dir_x * move;
+		*new_y = *new_y + game->player.dir_y * move;
+	}
+	if (game->move_keys.s)
+	{
+		*new_x = *new_x - game->player.dir_x * move;
+		*new_y = *new_y - game->player.dir_y * move;
+	}
+	if (game->move_keys.a)
+	{
+		*new_x = *new_x - game->player.plane_x * move;
+		*new_y = *new_y - game->player.plane_y * move;
+	}
+	if (game->move_keys.d)
+	{
+		*new_x = *new_x + game->player.plane_x * move;
+		*new_y = *new_y + game->player.plane_y * move;
+	}
 }
 
 void	update_camera_shifting(t_game *game, double shift)
 {
-	double	last_dir_x = game->player.dir_x;
-	double	last_dir_y = game->player.dir_y;
+	double	last_dir_x;
+	double	last_dir_y;
 
+	last_dir_y = game->player.dir_y;
+	last_dir_x = game->player.dir_x;
 	if (game->move_keys.left)
 	{
 		game->player.dir_x = last_dir_x * cos(shift) - last_dir_y * sin(shift);
@@ -56,30 +69,49 @@ void	update_camera_shifting(t_game *game, double shift)
 	}
 	if (game->move_keys.right)
 	{
-		game->player.dir_x = last_dir_x * cos(-shift) - last_dir_y * sin(-shift);
-		game->player.dir_y = last_dir_x * sin(-shift) + last_dir_y * cos(-shift);
+		game->player.dir_x = last_dir_x * cos(-shift)
+			- last_dir_y * sin(-shift);
+		game->player.dir_y = last_dir_x * sin(-shift)
+			+ last_dir_y * cos(-shift);
 		game->player.plane_x = -game->player.dir_y;
 		game->player.plane_y = game->player.dir_x;
 	}
 }
 
+static	int	is_solid(t_game *game, double x, double y)
+{
+	t_door	*d;
+	int		new_x;
+	int		new_y;
+
+	new_x = (int)x;
+	new_y = (int)y;
+	if (new_x < 0 || new_x >= game->map.width || new_y < 0
+		|| new_y >= game->map.height)
+		return (1);
+	if (game->map.grid[new_y][new_x] == '1')
+		return (1);
+	if (game->map.grid[new_y][new_x] == 'D')
+	{
+		d = get_door(game, new_x, new_y);
+		if (d && d->frame < 4)
+			return (1);
+	}
+	return (0);
+}
+
 int	can_move(t_game *game, double x, double y)
 {
-	double	collision_dist = 0.2;
-	int		check_x;
-	int		check_y;
+	double	dist;
 
-	check_x = (int)(x + collision_dist);
-	check_y = (int)(y + collision_dist);
-	if (check_x < 0 || check_x >= game->map.width || check_y < 0 || check_y >= game->map.height)
+	dist = 0.2;
+	if (is_solid(game, x + dist, y + dist))
 		return (0);
-	if (game->map.grid[check_y][check_x] == '1')
+	if (is_solid(game, x - dist, y - dist))
 		return (0);
-	check_x = (int)(x - collision_dist);
-	check_y = (int)(y - collision_dist);
-	if (check_x < 0 || check_x >= game->map.width || check_y < 0 || check_y >= game->map.height)
+	if (is_solid(game, x + dist, y - dist))
 		return (0);
-	if (game->map.grid[check_y][check_x] == '1')
+	if (is_solid(game, x - dist, y + dist))
 		return (0);
 	return (1);
 }

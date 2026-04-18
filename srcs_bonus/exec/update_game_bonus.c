@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update_game_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:54:55 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:54:56 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes_bonus/cub3D_bonus.h"
 
 int	update_game(t_game *game)
 {
 	update_move_player(game);
-	update_camera_shifting(game, -0.005);
+	update_camera_shifting(game, -0.015);
 	update_door(game);
 	raycasting_to_3d(game);
 	display_minimap(game);

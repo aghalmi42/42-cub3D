@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:57:21 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:57:22 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
@@ -75,7 +87,8 @@ typedef struct s_milx
 	int		height_size;
 }	t_milx;
 
-typedef struct s_keys_move {
+typedef struct s_keys_move
+{
 	int	w;
 	int	a;
 	int	s;

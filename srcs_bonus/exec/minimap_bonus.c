@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:54:41 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:54:42 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes_bonus/cub3D_bonus.h"
 
 void	display_minimap(t_game *game)
@@ -49,6 +61,8 @@ void	set_color_minimap(t_game *game, t_minimap *mmap)
 			else
 				mmap->color = YELLOW;
 		}
+		else if (game->map.grid[(int)mmap->map_y][(int)mmap->map_x] == ' ')
+			mmap->color = BLACK;
 		else
 			mmap->color = ORANGE;
 	}

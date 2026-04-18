@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_track.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:53:36 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:53:36 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
@@ -40,9 +51,9 @@ int	valid_track(t_game *game)
 		return (0);
 	}
 	if (!flood_fill(grid_copy, game->player.x, game->player.y, &game->map))
-        result = 0;
-    else
-        result = check_flood_result(&game->map, grid_copy);
-    free_grid(grid_copy);
+		result = 0;
+	else
+		result = check_flood_result(&game->map, grid_copy);
+	free_grid(grid_copy);
 	return (result);
 }

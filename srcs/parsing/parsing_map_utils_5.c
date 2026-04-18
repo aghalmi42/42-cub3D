@@ -1,41 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map_utils_5.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:53:10 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:53:10 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void map_dimension(char **array, int map_start, t_game *game)
+void	map_dimension(char **array, int map_start, t_game *game)
 {
-    int i;
-    int len;
+	int	i;
+	int	len;
 
-    i = map_start;
-    game->map.height = 0;
-    game->map.width = 0;
-    while(array[i])
-    {
-        len = ft_strlen(array[i]);
-        game->map.height++;
-        if (len > game->map.width)
-            game->map.width = len;
-        i++;
-    }
+	i = map_start;
+	game->map.height = 0;
+	game->map.width = 0;
+	while (array[i])
+	{
+		len = ft_strlen(array[i]);
+		game->map.height++;
+		if (len > game->map.width)
+			game->map.width = len;
+		i++;
+	}
 }
 
-int malloc_grid(t_game * game)
+int	malloc_grid(t_game *game)
 {
-    int i;
-    
-    i = 0;
-    game->map.grid = malloc(sizeof(char *) * (game->map.height + 1));
-    if (!game->map.grid)
-    {
-        printf("Error\nMalloc fail");
-        return (0);
-    }
-    while(i <= game->map.height)
-    {
-        game->map.grid[i] = NULL;
-        i++;
-    }
-    return (1);
+	int	i;
+
+	i = 0;
+	game->map.grid = malloc(sizeof(char *) * (game->map.height + 1));
+	if (!game->map.grid)
+	{
+		printf("Error\nMalloc fail");
+		return (0);
+	}
+	while (i <= game->map.height)
+	{
+		game->map.grid[i] = NULL;
+		i++;
+	}
+	return (1);
 }
 
 void	set_dir_ns(char c, t_game *game)

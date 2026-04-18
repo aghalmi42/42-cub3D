@@ -1,32 +1,16 @@
-#include "../../includes/cub3D.h"
-// void	loop_ray_2D(t_game *game)
-// {
-// 	int			i;
-// 	t_line_calc	line;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:52:15 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:52:16 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// 	line.player_angle = atan2(game->player.dir_y, game->player.dir_x);
-// 	i = 0;
-// 	line.player_x = game->player.x * TILE_SIZE;
-// 	line.player_y = game->player.y * TILE_SIZE;
-// 	while (i < 60)
-// 	{
-// 		line.ray_angle = line.player_angle - (30 * M_PI / 180.0) + (i * M_PI / 180.0);
-// 		line.ray_dir_x = cos(line.ray_angle);
-// 		line.ray_dir_y = sin(line.ray_angle);
-// 		line.end_dir_x = line.player_x + (line.ray_dir_x * 20);
-// 		line.end_dir_y = line.player_y + (line.ray_dir_y * 20);
-// 		line.dx = line.end_dir_x - line.player_x;
-// 		line.dy = line.end_dir_y - line.player_y;
-// 		if (fabs(line.dx) > fabs(line.dy))
-// 			line.steps = fabs(line.dx);
-// 		else
-// 			line.steps = fabs(line.dy);
-// 		line.x_incrase = line.dx / (double)line.steps;
-// 		line.y_incrase = line.dy / (double)line.steps;
-// 		display_line(game, &line, WHITE);
-// 		i++;
-// 	}
-// }
+#include "../../includes/cub3D.h"
 
 void	dda(t_game *game, int minimap)
 {

@@ -1,16 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:52:08 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:52:09 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
-int init_milx(t_milx *var, t_game *game)
+int	init_milx(t_milx *var, t_game *game)
 {
 	(void) game;
 	var->mlx = mlx_init();
 	if (!var->mlx)
 		return (0);
 	mlx_get_screen_size(var->mlx, &var->width_size, &var->height_size);
-	var->width_size = var->width_size * 2 / 3;
-	var->height_size = var->height_size * 3 / 4;
-	// var->width_size = 200;
-	// var->height_size = 200;
+	var->width_size = var->width_size / 2;
+	var->height_size = var->height_size / 2 ;
 	var->win = mlx_new_window(var->mlx, var->width_size,
 			var->height_size, "cub3D");
 	if (!var->win)
@@ -42,4 +52,13 @@ void	my_mlx_pixel_put(int y, int x, t_game *game, int color)
 
 	pixel = (y * game->libx.size_line + x);
 	game->libx.buffer[pixel] = color;
+}
+
+int	init_everything(t_game *game)
+{
+	if (!init_milx(&game->libx, game))
+		return (1);
+	init_textures(game);
+	init_move_keys(game);
+	return (0);
 }

@@ -1,4 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_doors_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amoderan <amoderan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:54:29 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/16 13:18:36 by amoderan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes_bonus/cub3D_bonus.h"
+
+void static init_dooors(t_game *game)
+{
+	int		side;
+	int		frame;
+
+	side = 0;
+	while (side < 4)
+	{
+		frame = 0;
+		while (frame < 5)
+		{
+			game->doors[side][frame].img_ptr = NULL;
+			frame++;
+		}
+		side++;
+	}
+}
 
 int	init_all_doors(t_game *game)
 {
@@ -8,6 +38,7 @@ int	init_all_doors(t_game *game)
 
 	side = 0;
 	init_prefixes(prefixes);
+	init_dooors(game);
 	while (side < 4)
 	{
 		frame = 0;

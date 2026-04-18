@@ -1,23 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_shape.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:51:54 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:51:55 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
-
-void display_rect(t_game *game, int x, int y, int size, int color)
-{
-	int i;
-	int pixel;
-
-	i = y;
-	while (i < y + size)
-	{
-		int j = x;
-		while (j < x + size)
-		{
-			pixel = (i * game->libx.size_line + j);
-			game->libx.buffer[pixel] = color;
-			j++;
-		}
-		i++;
-	}
-}
 
 void	display_line(t_game *game, t_line_calc *line, int color)
 {
@@ -62,7 +55,7 @@ void	display_line_minimap(t_game *game, t_line_calc *line, int color)
 			if (x >= 5 && x < MINIMAP_SIZE - 5 && y >= 5
 				&& y < MINIMAP_SIZE - 5)
 				my_mlx_pixel_put(y, x, game, color);
-		}	
+		}
 		x += line->x_incrase;
 		y += line->y_incrase;
 		i++;

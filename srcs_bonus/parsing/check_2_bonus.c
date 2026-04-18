@@ -1,31 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_2_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:55:04 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:55:04 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes_bonus/cub3D_bonus.h"
 
-void	clean_line(char *line)
+int	is_clean_line(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '\r')
-			line[i] = ' ';
-		if (line[i] == '\t')
-			line[i] = ' ';
+		if (line[i] == '\r' || line[i] == '\t')
+		{
+			printf("Error\nForbidden character detected\n");
+			return (0);
+		}
 		i++;
 	}
+	return (1);
 }
 
-void	clean_array(char **array)
+int	is_clean_array(char **array)
 {
 	int	i;
 
 	i = 0;
 	while (array[i])
 	{
-		clean_line(array[i]);
+		if (!is_clean_line(array[i]))
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
 char	*formate_line(char *line, int width)
@@ -69,5 +84,5 @@ int	formate_map(t_game *game)
 		}
 		i++;
 	}
-    return (1);
+	return (1);
 }

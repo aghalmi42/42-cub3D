@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/15 13:52:35 by aghalmi           #+#    #+#             */
+/*   Updated: 2026/04/15 13:52:35 by aghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
@@ -24,9 +35,11 @@ int	check_file_exist(char *path)
 
 int	check_texture(char *path)
 {
+	if (!path)
+		return (0);
 	if (!check_extension_xpm(path))
 	{
-		printf("Error\nTexture is .xpm: %s\n", path);
+		printf("Error\nTexture must be .xpm: %s\n", path);
 		return (0);
 	}
 	if (!check_file_exist(path))
