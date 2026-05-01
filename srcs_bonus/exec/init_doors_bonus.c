@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoderan <amoderan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 13:54:29 by aghalmi           #+#    #+#             */
-/*   Updated: 2026/04/16 13:18:36 by amoderan         ###   ########.fr       */
+/*   Updated: 2026/05/01 12:46:57 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes_bonus/cub3D_bonus.h"
 
-void static init_dooors(t_game *game)
+void init_dooors(t_game *game)
 {
 	int		side;
 	int		frame;
